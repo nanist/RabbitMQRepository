@@ -1,0 +1,1 @@
+springboot整合rabbitMQ有rabbitMq，provider消息推送实例，consumer消息消费实例，Direct、Topic、Fanout等六种模式的使用等。
