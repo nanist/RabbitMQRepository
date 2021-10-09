@@ -34,7 +34,7 @@ public class Send {
             //发送消息
             for (int i = 0; i < 10; i++)
             {
-                String message = "孟非问：华晨宇是不是傻逼？  嘉宾请回答。" + i+"号嘉宾，觉得华晨宇是个傻逼！";
+                String message = "孟非问：“华晨宇是不是傻逼？”  嘉宾请回答！" + i+"号嘉宾---觉得华晨宇是个傻逼！";
                 System.out.println("[send]：" + message);
                 //发送消息
                 channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("utf-8"));
