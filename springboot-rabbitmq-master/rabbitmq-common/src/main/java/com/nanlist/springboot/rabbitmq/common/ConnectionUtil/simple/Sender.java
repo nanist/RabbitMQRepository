@@ -13,6 +13,13 @@ import java.util.concurrent.TimeoutException;
  **/
 public class Sender {
     private final static String QUEUE_NAME = "simple_queue";
+    private final static String EXCHANGE_NAME = "simple_exchange";
+    /**
+     * 最新版本的RabbitMQ有四种交换机类型，分别是Direct exchange（默认）、Fanout exchange、Topic exchange、Headers exchange。
+     * Direct Exchange 是 RabbitMQ 默认的 Exchange，完全根据 RoutingKey 来路由消息。设置 Exchange 和 Queue 的 Binding 时需指定
+     * RoutingKey（一般为 Queue Name），发消息时也指定一样的 RoutingKey，消息就会被路由到对应的Queue。
+     */
+    private final static String EXCHANGE_TYPE = "direct";
 
     /**
      * 简单模式：一个生产者，一个消费者
@@ -36,6 +43,13 @@ public class Sender {
          */
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 
+        /**
+         * exchange–exchange的名称
+         * 类型–交换类型
+         */
+        channel.exchangeDeclare(EXCHANGE_NAME, EXCHANGE_TYPE);
+
+
         //消息内容
         /**
          * 交换机
@@ -43,7 +57,7 @@ public class Sender {
          * 其他属性  路由
          * 消息body
          */
-        String message = "错的不是我，是这个世界~";
+        String message = "华晨宇是傻逼~";
         channel.basicPublish("", QUEUE_NAME,null,message.getBytes());
         System.out.println("[x]Sent '"+message + "'");
 
