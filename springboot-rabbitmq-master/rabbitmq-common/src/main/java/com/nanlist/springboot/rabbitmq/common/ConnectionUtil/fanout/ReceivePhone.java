@@ -26,6 +26,7 @@ public class ReceivePhone {
             //从连接中获取一个通道
             final Channel channel = connection.createChannel();
             //声明交换机（分发:发布/订阅模式）
+            //Fanout Exchange 会忽略 RoutingKey 的设置，直接将 Message 广播到所有绑定的 Queue 中。
             channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
             //声明队列
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
